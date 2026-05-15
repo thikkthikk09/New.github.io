@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ZipToURL — ZIP to Download Link</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="bg-glow bg-glow--1" aria-hidden="true"></div>
+  <div class="bg-glow bg-glow--2" aria-hidden="true"></div>
+
+  <main class="page">
+    <header class="hero">
+      <div class="logo" aria-hidden="true">
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="40" height="40" rx="10" fill="url(#g)"/>
+          <path d="M12 14h16v4H12v-4zm0 6h10v4H12v-4zm0 6h14v4H12v-4z" fill="white" fill-opacity="0.9"/>
+          <path d="M26 26l6 6" stroke="white" stroke-width="2" stroke-linecap="round"/>
+          <defs>
+            <linearGradient id="g" x1="0" y1="0" x2="40" y2="40">
+              <stop stop-color="#6366f1"/>
+              <stop offset="1" stop-color="#8b5cf6"/>
+            </linearGradient>
+          </defs>
+        </svg>
+      </div>
+      <h1>ZipToURL</h1>
+      <p class="tagline">Upload a ZIP file and get a shareable download link in seconds.</p>
+    </header>
+
+    <section class="card" id="upload-card">
+      <div
+        class="dropzone"
+        id="dropzone"
+        role="button"
+        tabindex="0"
+        aria-label="Drop ZIP file here or click to browse"
+      >
+        <input type="file" id="file-input" accept=".zip,application/zip" hidden />
+        <div class="dropzone__icon" aria-hidden="true">
+          <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+            <path d="M24 8v20M16 20l8-8 8 8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M10 32v4a2 2 0 002 2h24a2 2 0 002-2v-4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <p class="dropzone__title">Drop your ZIP here</p>
+        <p class="dropzone__hint">or click to browse · max 100 GB</p>
+      </div>
+
+      <div class="progress hidden" id="progress" aria-live="polite">
+        <div class="progress__bar"><div class="progress__fill" id="progress-fill"></div></div>
+        <p class="progress__text" id="progress-text">Uploading…</p>
+      </div>
+
+      <div class="error hidden" id="error" role="alert"></div>
+    </section>
+
+    <section class="card card--result hidden" id="result-card">
+      <div class="result__badge">Link ready</div>
+      <p class="result__filename" id="result-filename"></p>
+      <p class="result__meta" id="result-meta"></p>
+
+      <div class="url-box">
+        <input type="text" id="result-url" readonly aria-label="Download link" />
+        <button type="button" class="btn btn--primary" id="copy-btn">Copy link</button>
+      </div>
+
+      <div class="result__actions">
+        <a class="btn btn--ghost" id="open-link" href="#" target="_blank" rel="noopener">Open link</a>
+        <button type="button" class="btn btn--ghost" id="new-upload">Upload another</button>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <p>Double-click <strong>start.bat</strong> — browser opens automatically at <strong>localhost:3847</strong></p>
+    </footer>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

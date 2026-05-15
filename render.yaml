@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: ziptourl
+    runtime: node
+    plan: free
+    buildCommand: echo "No build step"
+    startCommand: node server.js
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_VERSION
+        value: "22"
